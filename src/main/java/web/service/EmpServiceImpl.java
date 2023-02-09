@@ -8,7 +8,6 @@ import web.entity.Employee;
 import java.util.List;
 
 @Service
-@Transactional
 public class EmpServiceImpl implements EmpService {
 
     private final EmpDao empDao;
