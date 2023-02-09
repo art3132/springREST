@@ -1,12 +1,12 @@
 package web.dao;
 
 
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import web.entity.Employee;
 
-import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -20,9 +20,9 @@ public class EmpDaoImpl implements EmpDao {
     @Override
     public List<Employee> getAllEmployees() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = (Query) session.createQuery("from Employee");
-
-        return (List<Employee>) query.getResultList();
+        Query<Employee> query = session.createQuery("from Employee", Employee.class);
+        List<Employee> allEmployees = query.getResultList();
+        return allEmployees;
     }
 
     @Override
@@ -34,13 +34,13 @@ public class EmpDaoImpl implements EmpDao {
     @Override
     public Employee getEmployees(long id) {
         Session session = sessionFactory.getCurrentSession();
-        return (Employee) session.get(Employee.class, id);
+        return session.get(Employee.class, id);
     }
 
     @Override
     public void deleteEmployee(long id) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = (Query) session.createQuery("delete from Employee where id =: employeeId");
+        Query<Employee> query = session.createQuery("delete from Employee where id =: employeeId", Employee.class);
         query.setParameter("employeeId", id);
         query.executeUpdate();
     }

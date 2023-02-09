@@ -1,6 +1,5 @@
 package web.entity;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -9,7 +8,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
+    @Column(name = "id")
     private long id;
     @Column(name = "name")
     private String name;

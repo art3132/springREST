@@ -25,7 +25,7 @@ public class MyConfig {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
-            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/mysql");
+            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/mysql?useSSL=false&serverTimezone=UTC");
             dataSource.setUser("root");
             dataSource.setPassword("root");
         }catch ( PropertyVetoException e) {
